@@ -1,5 +1,5 @@
 document.getElementById('cluj').addEventListener('click', () => {
-    alert("Super! Bine a fi si la Cluuuuuj!");
+    alert("Super! Bine a fi si la Zalauuu!");
   });
   
   document.getElementById('oradea').addEventListener('click', () => {
