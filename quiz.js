@@ -81,28 +81,37 @@ const questions = [
   
   const helloKittyContainer = document.getElementById('hello-kitty-container');
   
-  function createHelloKitty() {
-    const helloKitty = document.createElement('img');
-    helloKitty.src = 'hellokitty2.png'; // Path to your Hello Kitty image
-    helloKitty.classList.add('hello-kitty-image');
-  
-    // Random position
-    const x = Math.random() * window.innerWidth;
-    const y = Math.random() * window.innerHeight;
-    helloKitty.style.left = `${x}px`;
-    helloKitty.style.top = `${y}px`;
-  
-    // Random rotation
-    const rotation = Math.random() * 360;
-    helloKitty.style.transform = `rotate(${rotation}deg)`;
-  
-    helloKittyContainer.appendChild(helloKitty);
-  
-    // Remove the image after a while to avoid clutter
-    setTimeout(() => {
-      helloKitty.remove();
-    }, 10000); // Remove after 10 seconds
+  let helloKittyCount = 0; // Counter for Hello Kitty images
+const maxHelloKitties = 5; // Maximum number of Hello Kitty images allowed
+
+function createHelloKitty() {
+  if (helloKittyCount >= maxHelloKitties) {
+    return; // Stop creating new images if the limit is reached
   }
+
+  const helloKitty = document.createElement('img');
+  helloKitty.src = 'hellokitty2.png'; // Path to your Hello Kitty image
+  helloKitty.classList.add('hello-kitty-image');
+
+  // Random position
+  const x = Math.random() * window.innerWidth;
+  const y = Math.random() * window.innerHeight;
+  helloKitty.style.left = `${x}px`;
+  helloKitty.style.top = `${y}px`;
+
+  // Random rotation
+  const rotation = Math.random() * 360;
+  helloKitty.style.transform = `rotate(${rotation}deg)`;
+
+  helloKittyContainer.appendChild(helloKitty);
+  helloKittyCount++; // Increment the counter
+
+  // Remove the image after a while to avoid clutter
+  setTimeout(() => {
+    helloKitty.remove();
+    helloKittyCount--; // Decrement the counter when an image is removed
+  }, 5000); // Remove after 10 seconds
+}
   
   // Create multiple Hello Kitty images
   setInterval(createHelloKitty, 1000); // Add a new image every 1 second
